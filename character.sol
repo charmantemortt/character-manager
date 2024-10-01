@@ -19,6 +19,7 @@ contract Character{
         username =_username;
         owner = msg.sender;
         characterdata.health = 100; 
+        require(owner != address(0), "Error");
     }
 
     modifier onlyOwner(){
@@ -51,6 +52,7 @@ contract CharacterManager{
         Character newCharacter = new Character(NewCharacter); 
         characters[NewCharacter] = address(newCharacter); 
         characterCreate.push(newCharacter); 
+        require(msg.sender != address(0), "Error");
         return address(newCharacter); 
     } 
 
